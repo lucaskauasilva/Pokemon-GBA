@@ -12,5 +12,7 @@ module com.example.pokemongba {
     requires com.almasb.fxgl.all;
 
     opens com.example.pokemongba to javafx.fxml;
+    opens com.example.pokemongba.testes to javafx.fxml;
     exports com.example.pokemongba;
+    exports com.example.pokemongba.testes;
 }
