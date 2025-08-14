@@ -11,6 +11,7 @@ Este roadmap apresenta as etapas planejadas para o desenvolvimento do jogo **Pok
 | 1 | Criação do repositório e estrutura inicial | ✅ |
 | 2 | Definição do README.md e roadmap | ✅ |
 | 3 | Implementar classe `Pokemon` com atributos básicos | ✅ |
+| 4 | Criar classe `Ataque` com tipo, dano e precisão | ✅ |
 
 ---
 
@@ -18,7 +19,7 @@ Este roadmap apresenta as etapas planejadas para o desenvolvimento do jogo **Pok
 
 | Etapa | Descrição | Status |
 |-------|-----------|--------|
-| 4 | Criar classe `Ataque` com tipo, dano e precisão | ⏳ |
+
 
 ---
 
