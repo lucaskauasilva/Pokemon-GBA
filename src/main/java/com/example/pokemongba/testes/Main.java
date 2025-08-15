@@ -9,12 +9,14 @@ public class Main {
         Pokemon charmander = new Pokemon("Charmander", "Fogo", 5, 100);
 
         Pokemon pikachu = new Pokemon("Pikachu", "Elétrico", 5, 100);
-        Ataque choque = new Ataque("Choque do Trovão", "Elétrico", 30, 90);
-        pikachu.adicionarAtaque(choque);
+        pikachu.adicionarAtaque(new Ataque("Choque do Trovão", "Elétrico", 30, 90));
+        pikachu.adicionarAtaque(new Ataque("Ataque Rápido", "Normal", 20, 100));
+        pikachu.adicionarAtaque(new Ataque("Cauda de Ferro", "Aço", 35, 85));
 
         Pokemon bulbasaur = new Pokemon("Bulbasaur", "Planta", 5, 100);
-        Ataque chicote = new Ataque("Chicote de Vinha", "Planta", 25, 95);
-        bulbasaur.adicionarAtaque(chicote);
+        bulbasaur.adicionarAtaque(new Ataque("Chicote de Vinha", "Planta", 25, 95));
+        bulbasaur.adicionarAtaque(new Ataque("Investida", "Normal", 20, 100));
+        bulbasaur.adicionarAtaque(new Ataque("Pó do Sono", "Planta", 0, 80)); // efeito futuro
 
         Batalha batalha = new Batalha(pikachu, bulbasaur);
         batalha.iniciar();
