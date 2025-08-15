@@ -1,5 +1,8 @@
 package com.example.pokemongba.modelo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Pokemon {
     /* Atributos Principais */
     private String nome;
@@ -7,6 +10,7 @@ public class Pokemon {
     private int nivel;
     private int vidaMaxima;
     private int vidaAtual;
+    private List<Ataque> ataques = new ArrayList<>();
 
     /* Construtor */
     public Pokemon(String nome, String tipo, int nivel, int vidaMaxima) {
@@ -33,6 +37,7 @@ public class Pokemon {
     public int getVidaAtual() {
         return vidaAtual;
     }
+    public List<Ataque> getAtaques() { return ataques; }
 
     /* Métodos de Ação */
     public void receberDano(int dano) {
@@ -49,6 +54,10 @@ public class Pokemon {
         nivel ++;
         vidaMaxima += 10;
         vidaAtual = vidaMaxima;
+    }
+
+    public void adicionarAtaque(Ataque ataque) {
+        ataques.add(ataque);
     }
 
     /* Exibir Status */
