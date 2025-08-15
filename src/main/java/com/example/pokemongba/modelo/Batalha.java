@@ -1,5 +1,6 @@
 package com.example.pokemongba.modelo;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Batalha {
@@ -35,12 +36,28 @@ public class Batalha {
         atacante.mostrarStatus();
         defensor.mostrarStatus();
 
-        Ataque ataque = atacante.getAtaques().get(0); // por enquanto, sempre o primeiro ataque
+        System.out.println("Escolha um ataque: ");
+        List<Ataque> listaAtaques = atacante.getAtaques();
+        for (int i = 0; i < listaAtaques.size(); i++) {
+            System.out.println((i + 1) + " - " + listaAtaques.get(i).getNome());
+        }
+
+        int escolha = -1;
+        while (escolha < 1 || escolha > listaAtaques.size()) {
+            System.out.println("Digite o número do ataque: ");
+            try {
+                escolha = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException exception) {
+                System.out.println("Entrada inválida. Tente novamente.");
+            }
+        }
+
+        Ataque ataque = atacante.getAtaques().get(escolha - 1); // por enquanto, sempre o primeiro ataque
         System.out.println(atacante.getNome() + " usou " + ataque.getNome());
 
         if (ataque.acertou()) {
             defensor.receberDano(ataque.getPoder());
-            System.out.println("✨ O ataque acertou " + defensor.getNome() + "!");
+            System.out.println("✨ O ataque acertou! " + defensor.getNome() + " perdeu " + ataque.getPoder() + " de vida.");
         } else {
             System.out.println("🥴 O ataque errou!");
         }
