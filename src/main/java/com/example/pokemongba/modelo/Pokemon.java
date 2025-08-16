@@ -11,6 +11,9 @@ public class Pokemon {
     private int vidaMaxima;
     private int vidaAtual;
     private List<Ataque> ataques = new ArrayList<>();
+    private boolean paralisado = false;
+    private int turnosDormindo = 0;
+    private boolean envenenado = false;
 
     /* Construtor */
     public Pokemon(String nome, String tipo, int nivel, int vidaMaxima) {
@@ -21,7 +24,7 @@ public class Pokemon {
         this.vidaAtual = vidaMaxima; // Começa com vida cheia
     }
 
-    /* Getters */
+    /* Getters and Setters */
     public String getNome() {
         return nome;
     }
@@ -38,6 +41,12 @@ public class Pokemon {
         return vidaAtual;
     }
     public List<Ataque> getAtaques() { return ataques; }
+    public boolean getParalisado() { return paralisado; }
+    public void setParalisia(boolean paralisado) { this.paralisado = paralisado; }
+    public int getTurnosDormindo() { return turnosDormindo; }
+    public void setTurnosDormindo(int turnosDormindo) { this.turnosDormindo = turnosDormindo; }
+    public boolean getEnvenenado() { return envenenado; }
+    public void setEnvenenamento(boolean invenenado) { this.envenenado = envenenado; }
 
     /* Métodos de Ação */
     public void receberDano(int dano) {

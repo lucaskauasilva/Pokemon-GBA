@@ -7,12 +7,14 @@ public class Ataque {
     private String tipo;
     private int poder;
     private int precisao; // de 0 a 100
+    private String efeito;
 
-    public Ataque(String nome, String tipo, int poder, int precisao) {
+    public Ataque(String nome, String tipo, int poder, int precisao, String efeito) {
         this.nome = nome;
         this.tipo = tipo;
         this.poder = poder;
         this.precisao = precisao;
+        this.efeito = efeito;
     }
 
     public String getNome() {
@@ -30,6 +32,7 @@ public class Ataque {
     public int getPrecisao() {
         return precisao;
     }
+    public String getEfeito() { return efeito; }
 
     public boolean acertou() {
         Random random = new Random();

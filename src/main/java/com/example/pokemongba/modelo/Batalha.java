@@ -54,10 +54,33 @@ public class Batalha {
 
         Ataque ataque = atacante.getAtaques().get(escolha - 1); // por enquanto, sempre o primeiro ataque
         System.out.println(atacante.getNome() + " usou " + ataque.getNome());
-
         if (ataque.acertou()) {
             defensor.receberDano(ataque.getPoder());
             System.out.println("✨ O ataque acertou! " + defensor.getNome() + " perdeu " + ataque.getPoder() + " de vida.");
+            if (ataque.getEfeito() != null) {
+                switch (ataque.getEfeito()) {
+                    case "Paralisia":
+                        if (Math.random() < 0.25) {
+                            defensor.setParalisia(true);
+                            System.out.println(defensor.getNome() + " foi paralisado!");
+                        }
+                        break;
+                    case "Sono":
+                        int turnos = (int)(Math.random() * 3) + 1;
+                        defensor.setTurnosDormindo(turnos);
+                        System.out.println(defensor.getNome() + " caiu no sono por " + turnos + " turnos!");
+                        break;
+                    case "Cura":
+                        int cura = ataque.getPoder();
+                        atacante.curar(cura);
+                        System.out.println(atacante.getNome() + " recuperou " + cura + " de vida!");
+                        break;
+                    case "Envenenamento":
+                        defensor.setEnvenenamento(true);
+                        System.out.println(defensor.getNome() + " foi envenenado!");
+                        break;
+                }
+            }
         } else {
             System.out.println("🥴 O ataque errou!");
         }
