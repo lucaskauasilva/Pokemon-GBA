@@ -20,7 +20,7 @@ Este roadmap apresenta as etapas planejadas para o desenvolvimento do jogo **Pok
 
 | Etapa | Descrição | Status |
 |-------|-----------|--------|
-
+| 6 | Interface gráfica simples com Java Swing ou JavaFX | 🔄 |
 
 ---
 
@@ -28,7 +28,6 @@ Este roadmap apresenta as etapas planejadas para o desenvolvimento do jogo **Pok
 
 | Etapa | Descrição | Status |
 |-------|-----------|--------|
-| 6 | Interface gráfica simples com Java Swing ou JavaFX | ⏳ |
 | 7 | Inventário de Pokémon capturados | ⏳ |
 | 8 | Sistema de captura após batalhas | ⏳ |
 | 9 | Evolução e sistema de experiência | ⏳ |
