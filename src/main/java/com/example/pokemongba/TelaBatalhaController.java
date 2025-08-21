@@ -1,0 +1,55 @@
+package com.example.pokemongba;
+
+import com.example.pokemongba.modelo.Pokemon;
+import com.example.pokemongba.modelo.Ataque;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+
+public class TelaBatalhaController {
+
+    @FXML private Label labelStatusP1;
+    @FXML private Label labelStatusP2;
+    @FXML private Label labelResultado;
+
+    private Pokemon pikachu;
+    private Pokemon bulbasaur;
+
+    public void initialize() {
+        pikachu = new Pokemon("Pikachu", "Elétrico", 5, 100);
+        pikachu.adicionarAtaque(new Ataque("Choque do Trovão", "Elétrico", 30, 90, "Paralisia"));
+        pikachu.adicionarAtaque(new Ataque("Ataque Rápido", "Normal", 20, 100, "Nenhum"));
+        pikachu.adicionarAtaque(new Ataque("Cauda de Ferro", "Aço", 35, 85, "Nenhum"));
+
+        bulbasaur = new Pokemon("Bulbasaur", "Planta", 5, 100);
+        bulbasaur.adicionarAtaque(new Ataque("Chicote de Vinha", "Planta", 25, 95, "Nenhum"));
+        bulbasaur.adicionarAtaque(new Ataque("Investida", "Normal", 20, 100, "Nenhum"));
+        bulbasaur.adicionarAtaque(new Ataque("Pó do Sono", "Planta", 0, 80, "Sono")); // efeito futuro
+        bulbasaur.adicionarAtaque(new Ataque("Poison", "Poison", 0, 80, "Envenenamento"));
+
+        atualizarStatus();
+    }
+
+    private void usarAtaque(int index) {
+        Ataque ataque = pikachu.getAtaques().get(index);
+        String resultado = "Pikachu usou " + ataque.getNome() + "!\n";
+
+        if (ataque.acertou()) {
+            bulbasaur.receberDano(ataque.getPoder());
+            resultado += "✨ O ataque acertou! Bulbasaur perdeu " + ataque.getPoder() + " de vida.";
+        } else {
+            resultado += "😵 O ataque errou";
+        }
+
+        labelResultado.setText(resultado);
+        atualizarStatus();
+    }
+
+    @FXML private void usarAtaque1() { usarAtaque(0); }
+    @FXML private void usarAtaque2() { usarAtaque(1); }
+    @FXML private void usarAtaque3() { usarAtaque(2); }
+
+    private void atualizarStatus() {
+        labelStatusP1.setText(pikachu.getNome() + " - Vida: " + pikachu.getVidaAtual() + "/" + pikachu.getVidaMaxima());
+        labelStatusP2.setText(bulbasaur.getNome() + "- Vida: " + bulbasaur.getVidaAtual() + "/" + bulbasaur.getVidaMaxima());
+    }
+}
