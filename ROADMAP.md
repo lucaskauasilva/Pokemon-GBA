@@ -13,6 +13,7 @@ Este roadmap apresenta as etapas planejadas para o desenvolvimento do jogo **Pok
 | 3 | Implementar classe `Pokemon` com atributos básicos | ✅ |
 | 4 | Criar classe `Ataque` com tipo, dano e precisão | ✅ |
 | 5 | Sistema de batalha por turnos entre dois Pokémon | ✅ |
+| 6 | Interface gráfica simples com Java Swing ou JavaFX | ✅ |
 
 ---
 
@@ -20,7 +21,7 @@ Este roadmap apresenta as etapas planejadas para o desenvolvimento do jogo **Pok
 
 | Etapa | Descrição | Status |
 |-------|-----------|--------|
-| 6 | Interface gráfica simples com Java Swing ou JavaFX | 🔄 |
+
 
 ---
 
