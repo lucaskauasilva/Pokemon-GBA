@@ -4,17 +4,26 @@ import com.example.pokemongba.modelo.Pokemon;
 import com.example.pokemongba.modelo.Ataque;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class TelaBatalhaController {
 
     @FXML private Label labelStatusP1;
     @FXML private Label labelStatusP2;
     @FXML private Label labelResultado;
+    @FXML private ImageView imgPikachu;
+    @FXML private ImageView imgBulbasaur;
 
     private Pokemon pikachu;
     private Pokemon bulbasaur;
 
     public void initialize() {
+        Image pikachuImg = new Image(getClass().getResource("/imagens/pikachu.png").toExternalForm());
+        Image bulbasaurImg = new Image(getClass().getResource("/imagens/bulbasaur.png").toExternalForm());
+        imgPikachu.setImage(pikachuImg);
+        imgBulbasaur.setImage(bulbasaurImg);
+
         pikachu = new Pokemon("Pikachu", "Elétrico", 5, 100);
         pikachu.adicionarAtaque(new Ataque("Choque do Trovão", "Elétrico", 30, 90, "Paralisia"));
         pikachu.adicionarAtaque(new Ataque("Ataque Rápido", "Normal", 20, 100, "Nenhum"));

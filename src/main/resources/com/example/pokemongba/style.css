@@ -40,3 +40,11 @@
     -fx-padding: 10;
     -fx-background-radius: 8;
 }
+
+/* Bordas e efeitos nas imagens */
+.image-view {
+    -fx-effect: dropshadow(gaussian, black, 5, 0.5, 0, 0);
+    -fx-border-color: white;
+    -fx-border-width: 2;
+    -fx-background-radius: 10;
+}
