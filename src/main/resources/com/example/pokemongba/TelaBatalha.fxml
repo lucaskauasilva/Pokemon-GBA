@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.pokemongba.TelaBatalhaController">
+<AnchorPane stylesheets="@style.css" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.pokemongba.TelaBatalhaController">
     <VBox spacing="10" layoutX="20" layoutY="20">
         <Label fx:id="labelStatusP1" text="Pikachu - vida: 100/100" />
         <Label fx:id="labelStatusP2" text="Bulbasaur - vida: 100/100" />

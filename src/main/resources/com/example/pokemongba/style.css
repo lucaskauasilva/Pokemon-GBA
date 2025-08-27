@@ -1,0 +1,42 @@
+/* Fundo geral */
+.anchor-pane {
+    -fx-background-color: linear-gradient(to bottom, #3a5ba0, #1c2e5a);
+    -fx-padding: 20;
+}
+
+/* Labels de status */
+.label {
+    -fx-font-family: "Verdana";
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: rgba(0, 0, 0, 0.3);
+    -fx-padding: 5 10;
+    -fx-background-radius: 5;
+}
+
+/* Botões de ataque */
+.button {
+    -fx-background-color: #ffcc00;
+    -fx-text-fill: #000000;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-border-color: #333;
+    -fx-border-width: 2;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-cursor: hand;
+}
+
+/* Efeito ao passar o mouse */
+.button:hover {
+    -fx-background-color: #ffe066;
+}
+
+/* Resultado da batalha */
+#labelResultado {
+    -fx-font-size: 13px;
+    -fx-text-fill: #ffdddd;
+    -fx-background-color: #660000;
+    -fx-padding: 10;
+    -fx-background-radius: 8;
+}
