@@ -2,10 +2,12 @@ package com.example.pokemongba;
 
 import com.example.pokemongba.modelo.Pokemon;
 import com.example.pokemongba.modelo.Ataque;
+import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 
 public class TelaBatalhaController {
 
@@ -38,12 +40,30 @@ public class TelaBatalhaController {
         atualizarStatus();
     }
 
+    private void animarAtaque(ImageView atacante) {
+        TranslateTransition transicao = new TranslateTransition(Duration.millis(200), atacante);
+        transicao.setByX(30); // avança
+        transicao.setAutoReverse(true);
+        transicao.setCycleCount(2); // vai e volta
+        transicao.play();
+    }
+
+    private void animarDano(ImageView defensor) {
+        TranslateTransition tremor = new TranslateTransition(Duration.millis(50), defensor);
+        tremor.setByX(10);
+        tremor.setAutoReverse(true);
+        tremor.setCycleCount(6); // tremor rápido
+        tremor.play();
+    }
+
     private void usarAtaque(int index) {
+        animarAtaque((imgPikachu));
         Ataque ataque = pikachu.getAtaques().get(index);
         String resultado = "Pikachu usou " + ataque.getNome() + "!\n";
 
         if (ataque.acertou()) {
             bulbasaur.receberDano(ataque.getPoder());
+            animarDano(imgBulbasaur);
             resultado += "✨ O ataque acertou! Bulbasaur perdeu " + ataque.getPoder() + " de vida.";
         } else {
             resultado += "😵 O ataque errou";
