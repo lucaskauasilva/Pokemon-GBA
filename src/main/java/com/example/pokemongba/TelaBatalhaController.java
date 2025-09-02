@@ -5,6 +5,7 @@ import com.example.pokemongba.modelo.Ataque;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
@@ -13,6 +14,8 @@ public class TelaBatalhaController {
 
     @FXML private Label labelStatusP1;
     @FXML private Label labelStatusP2;
+    @FXML private ProgressBar barraVidaP1;
+    @FXML private ProgressBar barraVidaP2;
     @FXML private Label labelResultado;
     @FXML private ImageView imgPikachu;
     @FXML private ImageView imgBulbasaur;
@@ -80,5 +83,8 @@ public class TelaBatalhaController {
     private void atualizarStatus() {
         labelStatusP1.setText(pikachu.getNome() + " - Vida: " + pikachu.getVidaAtual() + "/" + pikachu.getVidaMaxima());
         labelStatusP2.setText(bulbasaur.getNome() + "- Vida: " + bulbasaur.getVidaAtual() + "/" + bulbasaur.getVidaMaxima());
+
+        barraVidaP1.setProgress((double) pikachu.getVidaAtual() / pikachu.getVidaMaxima());
+        barraVidaP2.setProgress((double) bulbasaur.getVidaAtual() / bulbasaur.getVidaMaxima());
     }
 }

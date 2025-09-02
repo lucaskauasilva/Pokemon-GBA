@@ -48,3 +48,11 @@
     -fx-border-width: 2;
     -fx-background-radius: 10;
 }
+
+/* Barra de Vida */
+.progress-bar {
+    -fx-accent: #00ff00; /* cor da barra de vida */
+    -fx-background-color: #333;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}

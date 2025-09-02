@@ -17,23 +17,22 @@ public class Ataque {
         this.efeito = efeito;
     }
 
+    /* Getters */
     public String getNome() {
         return nome;
     }
-
     public String getTipo() {
         return tipo;
     }
-
     public int getPoder() {
         return poder;
     }
-
     public int getPrecisao() {
         return precisao;
     }
     public String getEfeito() { return efeito; }
 
+    /* métodos de ação */
     public boolean acertou() {
         Random random = new Random();
         int chance = random.nextInt(100) + 1;

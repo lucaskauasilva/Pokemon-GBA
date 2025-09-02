@@ -7,7 +7,9 @@
 <AnchorPane stylesheets="@style.css" xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.pokemongba.TelaBatalhaController">
     <VBox spacing="10" layoutX="20" layoutY="20">
         <Label fx:id="labelStatusP1" text="Pikachu - vida: 100/100" />
+        <ProgressBar fx:id="barraVidaP1" prefWidth="200" progress="1.0" />
         <Label fx:id="labelStatusP2" text="Bulbasaur - vida: 100/100" />
+        <ProgressBar fx:id="barraVidaP2" prefWidth="200" progress="1.0" />
         <Label text="Escolha um ataque" />
         <HBox spacing="20" alignment="CENTER">
             <ImageView fx:id="imgPikachu" fitWidth="120" fitHeight="120" />
