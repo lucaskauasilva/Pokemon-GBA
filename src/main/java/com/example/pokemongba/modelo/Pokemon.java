@@ -41,10 +41,18 @@ public class Pokemon {
         return vidaAtual;
     }
     public List<Ataque> getAtaques() { return ataques; }
-    public boolean getParalisado() { return paralisado; }
-    public void setParalisia(boolean paralisado) { this.paralisado = paralisado; }
-    public int getTurnosDormindo() { return turnosDormindo; }
+    public boolean estaParalisado() { return paralisado; }
+    public void setParalisado(boolean paralisado) { this.paralisado = paralisado; }
+    public boolean estaDormindo() { return turnosDormindo > 0; }
     public void setTurnosDormindo(int turnosDormindo) { this.turnosDormindo = turnosDormindo; }
+    public void reduzirTurnoSono() {
+        if (turnosDormindo > 0) {
+            turnosDormindo--;
+        }
+    }
+    public boolean estaDerrotado() {
+        return vidaAtual <= 0;
+    }
     public boolean getEnvenenado() { return envenenado; }
     public void setEnvenenamento(boolean invenenado) { this.envenenado = envenenado; }
 
@@ -70,8 +78,9 @@ public class Pokemon {
     }
 
     /* Exibir Status */
-    public void mostrarStatus() {
+    public String mostrarStatus() {
         System.out.println("🐾 " + nome + " | Tipo: " + tipo + " | Nível: " + nivel);
         System.out.println("❤ vida: " + vidaAtual + "/" +vidaMaxima + "\n");
+        return null;
     }
 }

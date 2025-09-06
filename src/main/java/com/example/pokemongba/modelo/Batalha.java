@@ -1,6 +1,7 @@
 package com.example.pokemongba.modelo;
 
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Batalha {
@@ -11,6 +12,14 @@ public class Batalha {
     public Batalha(Pokemon p1, Pokemon p2) {
         this.p1 = p1;
         this.p2 = p2;
+    }
+
+    /* Getters */
+    public Pokemon getP1() {
+        return p1;
+    }
+    public Pokemon getP2() {
+        return p2;
     }
 
     public void iniciar() {
@@ -30,6 +39,75 @@ public class Batalha {
             System.out.println(p2.getNome() + " foi derrotado!");
         }
     }
+
+    public void turnoJogador(int index) {
+        if (p1.getVidaAtual() <= 0 || p2.getVidaAtual() <= 0) {
+            System.out.println("A batalha já terminou.");
+            return;
+        }
+
+        // Verifica se o índice é válido
+        if (index < 0 || index >= p1.getAtaques().size()) {
+            System.out.println("Ataque inválido.");
+            return;
+        }
+
+        Ataque ataqueEscolhido = p1.getAtaques().get(index);
+        System.out.println(p1.getNome() + " usou " + ataqueEscolhido.getNome() + "!");
+
+        aplicarAtaque(p1, p2, ataqueEscolhido);
+
+        if (p2.getVidaAtual() <= 0) {
+            System.out.println(p2.getNome() + " foi derrotado!");
+        }
+    }
+
+    public void turnoIA() {
+        if (p2.getVidaAtual() <= 0 || p1.getVidaAtual() <= 0) {
+            System.out.println("A batalha já terminou.");
+            return;
+        }
+
+        // Verifica se o oponente está dormindo
+        if (p2.estaDormindo()) {
+            System.out.println(p2.getNome() + " está dormindo e não pode atacar!");
+            p2.reduzirTurnoSono();
+            return;
+        }
+
+         // verifica se o oponente está paralisado
+        if (p2.estaParalisado()) {
+            if (Math.random() < 0.25) {
+                System.out.println(p2.getNome() + " está paralisado e não pode atacar!");
+                return;
+            }
+        }
+
+        // Escolhe um ataque aleatório
+        List<Ataque> ataques = p2.getAtaques();
+        int indexAleatorio = new Random().nextInt(ataques.size());
+        Ataque ataqueEscolhido = ataques.get(indexAleatorio);
+
+        System.out.println(p2.getNome() + " usou " + ataqueEscolhido.getNome() + "!");
+        aplicarAtaque(p2, p1, ataqueEscolhido);
+
+        if (p1.getVidaAtual() <= 0) {
+            System.out.println(p1.getNome() + " foi derrotado!");
+        }
+    }
+
+    private void aplicarAtaque(Pokemon atacante, Pokemon defensor, Ataque ataque) {
+        Random rand = new Random();
+        int chance = rand.nextInt(100);
+
+        if (chance < ataque.getPrecisao()) {
+            defensor.receberDano(ataque.getPoder());
+            System.out.println("O ataque acertou! " + defensor.getNome() + " perdeu " + ataque.getPoder() + " de vida.");
+        } else {
+            System.out.println("O ataque falhou!");
+        }
+    }
+
 
     private void turno(Pokemon atacante, Pokemon defensor) {
         System.out.println("\n🔁 Turno de " + atacante.getNome());
@@ -61,7 +139,7 @@ public class Batalha {
                 switch (ataque.getEfeito()) {
                     case "Paralisia":
                         if (Math.random() < 0.25) {
-                            defensor.setParalisia(true);
+                            defensor.setParalisado(true);
                             System.out.println(defensor.getNome() + " foi paralisado!");
                         }
                         break;

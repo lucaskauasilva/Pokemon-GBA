@@ -1,5 +1,6 @@
 package com.example.pokemongba;
 
+import com.example.pokemongba.modelo.Batalha;
 import com.example.pokemongba.modelo.Pokemon;
 import com.example.pokemongba.modelo.Ataque;
 import javafx.animation.TranslateTransition;
@@ -22,6 +23,7 @@ public class TelaBatalhaController {
 
     private Pokemon pikachu;
     private Pokemon bulbasaur;
+    private Batalha batalha;
 
     public void initialize() {
         Image pikachuImg = new Image(getClass().getResource("/imagens/pikachu.png").toExternalForm());
@@ -39,6 +41,8 @@ public class TelaBatalhaController {
         bulbasaur.adicionarAtaque(new Ataque("Investida", "Normal", 20, 100, "Nenhum"));
         bulbasaur.adicionarAtaque(new Ataque("Pó do Sono", "Planta", 0, 80, "Sono")); // efeito futuro
         bulbasaur.adicionarAtaque(new Ataque("Poison", "Poison", 0, 80, "Envenenamento"));
+
+        batalha = new Batalha(pikachu, bulbasaur);
 
         atualizarStatus();
     }
@@ -76,9 +80,25 @@ public class TelaBatalhaController {
         atualizarStatus();
     }
 
-    @FXML private void usarAtaque1() { usarAtaque(0); }
-    @FXML private void usarAtaque2() { usarAtaque(1); }
-    @FXML private void usarAtaque3() { usarAtaque(2); }
+    @FXML private void usarAtaque1() {
+        batalha.turnoJogador(0);
+        batalha.turnoIA();
+
+        atualizarInterface();
+        atualizarStatus();}
+    @FXML private void usarAtaque2() {
+        batalha.turnoJogador(1);
+        batalha.turnoIA();
+
+        atualizarInterface();
+        atualizarStatus();}
+    @FXML private void usarAtaque3() {
+        batalha.turnoJogador(2);
+        batalha.turnoIA();
+
+        atualizarInterface();
+        atualizarStatus();
+    }
 
     private void atualizarStatus() {
         labelStatusP1.setText(pikachu.getNome() + " - Vida: " + pikachu.getVidaAtual() + "/" + pikachu.getVidaMaxima());
@@ -86,5 +106,13 @@ public class TelaBatalhaController {
 
         barraVidaP1.setProgress((double) pikachu.getVidaAtual() / pikachu.getVidaMaxima());
         barraVidaP2.setProgress((double) bulbasaur.getVidaAtual() / bulbasaur.getVidaMaxima());
+    }
+
+    public void atualizarInterface() {
+        labelStatusP1.setText(batalha.getP1().mostrarStatus());
+        labelStatusP2.setText(batalha.getP2().mostrarStatus());
+
+        barraVidaP1.setProgress(batalha.getP1().getVidaAtual());
+        barraVidaP2.setProgress(batalha.getP2().getVidaAtual());
     }
 }
