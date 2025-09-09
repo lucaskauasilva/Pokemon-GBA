@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.pokemongba.testes.TelaVitoriaController"
+            prefWidth="400"
+            prefHeight="200"
+            style="-fx-background-color: linear-gradient(to bottom, #ffe066, #ffcc00);">
+    <VBox alignment="CENTER" spacing="20" layoutX="50" layoutY="50">
+        <Label text="🏆 Vitória!" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+        <Label fx:id="labelMensagem" text="Seu Pokémon venceu a batalha!" style="-fx-font-size: 16px;" />
+        <Button text="Jogar Novamente" onAction="#voltarParaBatalha" />
+    </VBox>
+</AnchorPane>

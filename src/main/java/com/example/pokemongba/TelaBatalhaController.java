@@ -5,10 +5,14 @@ import com.example.pokemongba.modelo.Pokemon;
 import com.example.pokemongba.modelo.Ataque;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class TelaBatalhaController {
@@ -78,6 +82,20 @@ public class TelaBatalhaController {
 
         labelResultado.setText(resultado);
         atualizarStatus();
+
+        if (batalha.getP2().getVidaAtual() <= 0) {
+            mostrarTelaVitoria();
+        }
+    }
+
+    private void mostrarTelaVitoria() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("TelaVitoria.fxml"));
+            Stage stage = (Stage) labelResultado.getScene().getWindow();
+            stage.setScene(new Scene(root));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML private void usarAtaque1() {
@@ -85,7 +103,12 @@ public class TelaBatalhaController {
         batalha.turnoIA();
 
         atualizarInterface();
-        atualizarStatus();}
+        atualizarStatus();
+
+        if (batalha.getP2().getVidaAtual() <= 0) {
+            mostrarTelaVitoria();
+        }
+    }
     @FXML private void usarAtaque2() {
         batalha.turnoJogador(1);
         batalha.turnoIA();
