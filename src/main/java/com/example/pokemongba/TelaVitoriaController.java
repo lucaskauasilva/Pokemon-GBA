@@ -1,4 +1,4 @@
-package com.example.pokemongba.testes;
+package com.example.pokemongba;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

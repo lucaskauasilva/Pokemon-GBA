@@ -1,6 +1,7 @@
 package com.example.pokemongba;
 
 import com.example.pokemongba.modelo.Batalha;
+import com.example.pokemongba.modelo.Inventario;
 import com.example.pokemongba.modelo.Pokemon;
 import com.example.pokemongba.modelo.Ataque;
 import javafx.animation.TranslateTransition;
@@ -9,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -24,10 +26,13 @@ public class TelaBatalhaController {
     @FXML private Label labelResultado;
     @FXML private ImageView imgPikachu;
     @FXML private ImageView imgBulbasaur;
+    @FXML private ListView<String> listaPokemons;
 
     private Pokemon pikachu;
     private Pokemon bulbasaur;
     private Batalha batalha;
+    private Inventario inventario;
+
 
     public void initialize() {
         Image pikachuImg = new Image(getClass().getResource("/imagens/pikachu.png").toExternalForm());
@@ -48,7 +53,13 @@ public class TelaBatalhaController {
 
         batalha = new Batalha(pikachu, bulbasaur);
 
+        inventario = new Inventario();
+
         atualizarStatus();
+
+        for (Pokemon p : inventario.getTodos()) {
+            listaPokemons.getItems().add(p.getNome() + " - " + p.getTipo());
+        }
     }
 
     private void animarAtaque(ImageView atacante) {
@@ -106,6 +117,7 @@ public class TelaBatalhaController {
         atualizarStatus();
 
         if (batalha.getP2().getVidaAtual() <= 0) {
+            inventario.adicionarPokemon(batalha.getP2());
             mostrarTelaVitoria();
         }
     }
