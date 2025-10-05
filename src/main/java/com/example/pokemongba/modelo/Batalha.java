@@ -75,7 +75,7 @@ public class Batalha {
             return;
         }
 
-         // verifica se o oponente está paralisado
+        // verifica se o oponente está paralisado
         if (p2.estaParalisado()) {
             if (Math.random() < 0.25) {
                 System.out.println(p2.getNome() + " está paralisado e não pode atacar!");
@@ -102,12 +102,11 @@ public class Batalha {
 
         if (chance < ataque.getPrecisao()) {
             defensor.receberDano(ataque.getPoder());
-            System.out.println("O ataque acertou! " + defensor.getNome() + " perdeu " + ataque.getPoder() + " de vida.");
+            System.out.println( atacante.getNome() + " acertou! " + defensor.getNome() + " perdeu " + ataque.getPoder() + " de vida.");
         } else {
             System.out.println("O ataque falhou!");
         }
     }
-
 
     private void turno(Pokemon atacante, Pokemon defensor) {
         System.out.println("\n🔁 Turno de " + atacante.getNome());
@@ -147,6 +146,7 @@ public class Batalha {
                         int turnos = (int)(Math.random() * 3) + 1;
                         defensor.setTurnosDormindo(turnos);
                         System.out.println(defensor.getNome() + " caiu no sono por " + turnos + " turnos!");
+                        defensor.estaDormindo();
                         break;
                     case "Cura":
                         int cura = ataque.getPoder();
@@ -163,5 +163,23 @@ public class Batalha {
             System.out.println("🥴 O ataque errou!");
         }
     }
+
+    public boolean tentarCaptura() {
+        if (p2.getVidaAtual() > 0) {
+            System.out.print("Você só pode capturar pokémon derrotado.");
+            return false;
+        }
+
+        double chance = Math.random();
+        boolean capturado = chance <= 0.6; // 60% de chance de captura
+        if (capturado) {
+            System.out.println("🎉 Parabéns você capturou " + p2.getNome() + "!");
+        } else {
+            System.out.println("💨 O " + p2.getNome() + " escapou da Pokébola!");
+        }
+
+        return capturado;
+    }
+
 
 }

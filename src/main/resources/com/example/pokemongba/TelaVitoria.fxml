@@ -15,5 +15,6 @@
         <Label text="🏆 Vitória!" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
         <Label fx:id="labelMensagem" text="Seu Pokémon venceu a batalha!" style="-fx-font-size: 16px;" />
         <Button text="Jogar Novamente" onAction="#voltarParaBatalha" />
+        <Button text="Capturar Pokémon" onAction="#tentarCaptura" />
     </VBox>
 </AnchorPane>

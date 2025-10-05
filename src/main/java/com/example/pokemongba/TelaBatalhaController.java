@@ -17,8 +17,9 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class TelaBatalhaController {
+import java.io.IOException;
 
+public class TelaBatalhaController {
     @FXML private Label labelStatusP1;
     @FXML private Label labelStatusP2;
     @FXML private ProgressBar barraVidaP1;
@@ -31,8 +32,7 @@ public class TelaBatalhaController {
     private Pokemon pikachu;
     private Pokemon bulbasaur;
     private Batalha batalha;
-    private Inventario inventario;
-
+    private Inventario inventario = new Inventario();
 
     public void initialize() {
         Image pikachuImg = new Image(getClass().getResource("/imagens/pikachu.png").toExternalForm());
@@ -53,7 +53,7 @@ public class TelaBatalhaController {
 
         batalha = new Batalha(pikachu, bulbasaur);
 
-        inventario = new Inventario();
+        //inventario = new Inventario();
 
         atualizarStatus();
 
@@ -93,10 +93,6 @@ public class TelaBatalhaController {
 
         labelResultado.setText(resultado);
         atualizarStatus();
-
-        if (batalha.getP2().getVidaAtual() <= 0) {
-            mostrarTelaVitoria();
-        }
     }
 
     private void mostrarTelaVitoria() {
@@ -109,6 +105,17 @@ public class TelaBatalhaController {
         }
     }
 
+    private void mostrarTelaInventario() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/com/example/pokemongba/TelaInventario.fxml"));
+            Stage stage = (Stage) labelResultado.getScene().getWindow();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Erro ao carregar a tela de inventário.");
+        }
+    }
+
     @FXML private void usarAtaque1() {
         batalha.turnoJogador(0);
         batalha.turnoIA();
@@ -117,8 +124,13 @@ public class TelaBatalhaController {
         atualizarStatus();
 
         if (batalha.getP2().getVidaAtual() <= 0) {
-            inventario.adicionarPokemon(batalha.getP2());
-            mostrarTelaVitoria();
+            boolean sucessoCaptura = batalha.tentarCaptura();
+            if (sucessoCaptura) {
+                inventario.adicionarPokemon(batalha.getP2());
+                mostrarTelaInventario();
+            } else {
+                mostrarTelaVitoria(); // sem captura, somente a vitória.
+            }
         }
     }
     @FXML private void usarAtaque2() {
@@ -126,13 +138,33 @@ public class TelaBatalhaController {
         batalha.turnoIA();
 
         atualizarInterface();
-        atualizarStatus();}
+        atualizarStatus();
+
+        if (batalha.getP2().getVidaAtual() <= 0) {
+            boolean sucessoCaptura = batalha.tentarCaptura();
+            if (sucessoCaptura) {
+                inventario.adicionarPokemon(batalha.getP2());
+                mostrarTelaInventario();
+            } else {
+                mostrarTelaVitoria(); // sem captura, somente a vitória.
+            }
+        }}
     @FXML private void usarAtaque3() {
         batalha.turnoJogador(2);
         batalha.turnoIA();
 
         atualizarInterface();
         atualizarStatus();
+
+        if (batalha.getP2().getVidaAtual() <= 0) {
+            boolean sucessoCaptura = batalha.tentarCaptura();
+            if (sucessoCaptura) {
+                inventario.adicionarPokemon(batalha.getP2());
+                mostrarTelaInventario();
+            } else {
+                mostrarTelaVitoria(); // sem captura, somente a vitória.
+            }
+        }
     }
 
     private void atualizarStatus() {
@@ -142,7 +174,6 @@ public class TelaBatalhaController {
         barraVidaP1.setProgress((double) pikachu.getVidaAtual() / pikachu.getVidaMaxima());
         barraVidaP2.setProgress((double) bulbasaur.getVidaAtual() / bulbasaur.getVidaMaxima());
     }
-
     public void atualizarInterface() {
         labelStatusP1.setText(batalha.getP1().mostrarStatus());
         labelStatusP2.setText(batalha.getP2().mostrarStatus());
