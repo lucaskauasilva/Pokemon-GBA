@@ -14,14 +14,14 @@ Este roadmap apresenta as etapas planejadas para o desenvolvimento do jogo **Pok
 | 4 | Criar classe `Ataque` com tipo, dano e precisão | ✅ |
 | 5 | Sistema de batalha por turnos entre dois Pokémon | ✅ |
 | 6 | Interface gráfica simples com Java Swing ou JavaFX | ✅ |
-
+| 7 | Inventário de Pokémon capturados | ✅ | 
 ---
 
 ## 🔄 Em andamento
 
 | Etapa | Descrição | Status |
 |-------|-----------|--------|
-| 7 | Inventário de Pokémon capturados | 🔄 |
+| 8 | Sistema de captura após batalhas | 🔄 |
 | 11 | Implementação de Estilização com CSS | 🔄 |
 | 12 | Implementação de outras sugestões do Copilot | 🔄 |
 
@@ -31,7 +31,6 @@ Este roadmap apresenta as etapas planejadas para o desenvolvimento do jogo **Pok
 
 | Etapa | Descrição | Status |
 |-------|-----------|--------|
-| 8 | Sistema de captura após batalhas | ⏳ |
 | 9 | Evolução e sistema de experiência | ⏳ |
 | 10 | Tela de menu e navegação básica | ⏳ |
 
