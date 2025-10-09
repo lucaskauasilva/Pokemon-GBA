@@ -15,13 +15,14 @@ Este roadmap apresenta as etapas planejadas para o desenvolvimento do jogo **Pok
 | 5 | Sistema de batalha por turnos entre dois Pokémon | ✅ |
 | 6 | Interface gráfica simples com Java Swing ou JavaFX | ✅ |
 | 7 | Inventário de Pokémon capturados | ✅ | 
+| 8 | Sistema de captura após batalhas | ✅ |
 ---
 
 ## 🔄 Em andamento
 
 | Etapa | Descrição | Status |
 |-------|-----------|--------|
-| 8 | Sistema de captura após batalhas | 🔄 |
+
 | 11 | Implementação de Estilização com CSS | 🔄 |
 | 12 | Implementação de outras sugestões do Copilot | 🔄 |
 
