@@ -1,19 +1,27 @@
 package com.example.pokemongba.modelo;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Pokemon {
     /* Atributos Principais */
+    private Image imagem;
     private String nome;
     private String tipo;
+    private int experiencia = 0;
     private int nivel;
+    private boolean evoluido = false;
     private int vidaMaxima;
     private int vidaAtual;
+    private int ataqueBase;
     private List<Ataque> ataques = new ArrayList<>();
     private boolean paralisado = false;
     private int turnosDormindo = 0;
     private boolean envenenado = false;
+
 
     /* Construtor */
     public Pokemon(String nome, String tipo, int nivel, int vidaMaxima) {
@@ -71,6 +79,29 @@ public class Pokemon {
         nivel ++;
         vidaMaxima += 10;
         vidaAtual = vidaMaxima;
+    }
+    public void ganharExperiencia(int xp) {
+        experiencia += xp;
+        System.out.println(nome + " ganhou " + xp + " XP!");
+
+        if (experiencia >= nivel * 100) {
+            evoluir();
+        }
+    }
+    public void evoluir() {
+        if (evoluido) return;
+
+        nivel++;
+        evoluido = true;
+
+        // Exemplo: Pikachu evolui para Raychu
+        if (nome.equals("Pikachu")) {
+            nome = "Raychu";
+            vidaMaxima += 30;
+            ataqueBase += 10;
+            imagem = new Image(getClass().getResource("/imagens/charmeleon.png").toExternalForm());
+            System.out.println("🔥 " + nome + " evoluiu para Raychu!");
+        }
     }
 
     public void adicionarAtaque(Ataque ataque) {

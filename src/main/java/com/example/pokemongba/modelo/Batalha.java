@@ -5,6 +5,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Batalha {
+    private static Batalha instancia;
     private Pokemon p1;
     private Pokemon p2;
     private Scanner scanner = new Scanner(System.in);
@@ -14,12 +15,19 @@ public class Batalha {
         this.p2 = p2;
     }
 
+    public static void criarInstancia(Pokemon p1, Pokemon p2) {
+        instancia = new Batalha(p1, p2);
+    }
+
     /* Getters */
     public Pokemon getP1() {
         return p1;
     }
     public Pokemon getP2() {
         return p2;
+    }
+    public static Batalha getInstancia() {
+        return instancia;
     }
 
     public void iniciar() {

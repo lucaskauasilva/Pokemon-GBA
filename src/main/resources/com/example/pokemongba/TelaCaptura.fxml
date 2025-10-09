@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.pokemongba.TelaCapturaController"
+            prefWidth="400" prefHeight="300" style="-fx-background-color: black;">
+    <VBox alignment="CENTER" spacing="20" layoutX="100" layoutY="50">
+        <ImageView fx:id="pokebolaImagem" fitWidth="100" fitHeight="100" />
+        <Label fx:id="labelContagem" text="Jogando Pokébola..." style="-fx-text-fill: white; -fx-font-size: 18px;" />
+    </VBox>
+</AnchorPane>

@@ -27,6 +27,17 @@ public class TelaVitoriaController {
         stage.setScene(new Scene(root));
     }
 
+    public void mostrarTelaVitoria() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/com/example/pokemongba/TelaVitoria.fxml"));
+            Stage stage = (Stage) labelResultado.getScene().getWindow();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Erro ao carregar a tela de vitória.");
+        }
+    }
+
     private void mostrarTelaInventario() {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("/com/example/pokemongba/TelaInventario.fxml"));
@@ -40,13 +51,14 @@ public class TelaVitoriaController {
 
     @FXML
     private void tentarCaptura(ActionEvent event) {
-        boolean sucesso = batalha.tentarCaptura();
+        boolean sucesso = Batalha.getInstancia().tentarCaptura();
 
         if (sucesso) {
             inventario.adicionarPokemon(batalha.getP2());
             mostrarTelaInventario();
         } else {
             labelMensagem.setText("O Pokémon escapou!");
+            mostrarTelaVitoria();
         }
     }
 }

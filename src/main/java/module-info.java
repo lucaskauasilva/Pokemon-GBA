@@ -10,6 +10,7 @@ module com.example.pokemongba {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires javafx.media;
 
     opens com.example.pokemongba to javafx.fxml;
     opens com.example.pokemongba.testes to javafx.fxml;

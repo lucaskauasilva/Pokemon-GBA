@@ -27,18 +27,22 @@ public class TelaBatalhaController {
     @FXML private Label labelResultado;
     @FXML private ImageView imgPikachu;
     @FXML private ImageView imgBulbasaur;
+//    @FXML private  ImageView imgCharmander;
     @FXML private ListView<String> listaPokemons;
 
     private Pokemon pikachu;
     private Pokemon bulbasaur;
+    private Pokemon charmander;
     private Batalha batalha;
     private Inventario inventario = new Inventario();
 
     public void initialize() {
         Image pikachuImg = new Image(getClass().getResource("/imagens/pikachu.png").toExternalForm());
         Image bulbasaurImg = new Image(getClass().getResource("/imagens/bulbasaur.png").toExternalForm());
+//        Image charmanderImg = new Image(getClass().getResource("/imagens/charmander.png").toExternalForm());
         imgPikachu.setImage(pikachuImg);
         imgBulbasaur.setImage(bulbasaurImg);
+//        imgCharmander.setImage(charmanderImg);
 
         pikachu = new Pokemon("Pikachu", "Elétrico", 5, 100);
         pikachu.adicionarAtaque(new Ataque("Choque do Trovão", "Elétrico", 30, 90, "Paralisia"));
@@ -50,6 +54,8 @@ public class TelaBatalhaController {
         bulbasaur.adicionarAtaque(new Ataque("Investida", "Normal", 20, 100, "Nenhum"));
         bulbasaur.adicionarAtaque(new Ataque("Pó do Sono", "Planta", 0, 80, "Sono")); // efeito futuro
         bulbasaur.adicionarAtaque(new Ataque("Poison", "Poison", 0, 80, "Envenenamento"));
+
+        charmander = new Pokemon("Charmander", "Fogo", 5, 100);
 
         batalha = new Batalha(pikachu, bulbasaur);
 
@@ -116,6 +122,20 @@ public class TelaBatalhaController {
         }
     }
 
+    private void mostrarTelaCaptura() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/com/example/pokemongba/TelaCaptura.fxml"));
+            Stage stage = (Stage) labelResultado.getScene().getWindow();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setBatalha(Batalha batalha) {
+        this.batalha = batalha;
+    }
+
     @FXML private void usarAtaque1() {
         batalha.turnoJogador(0);
         batalha.turnoIA();
@@ -124,12 +144,17 @@ public class TelaBatalhaController {
         atualizarStatus();
 
         if (batalha.getP2().getVidaAtual() <= 0) {
+            mostrarTelaCaptura();
             boolean sucessoCaptura = batalha.tentarCaptura();
             if (sucessoCaptura) {
                 inventario.adicionarPokemon(batalha.getP2());
                 mostrarTelaInventario();
             } else {
                 mostrarTelaVitoria(); // sem captura, somente a vitória.
+                batalha.getP1().ganharExperiencia(100);
+                imgPikachu.setImage(new Image(getClass().getResource("/imagens/charmeleon.png").toExternalForm()));
+//              labelNome.setText(jogador.getNome());
+
             }
         }
     }
@@ -141,14 +166,18 @@ public class TelaBatalhaController {
         atualizarStatus();
 
         if (batalha.getP2().getVidaAtual() <= 0) {
+            mostrarTelaCaptura();
             boolean sucessoCaptura = batalha.tentarCaptura();
             if (sucessoCaptura) {
                 inventario.adicionarPokemon(batalha.getP2());
                 mostrarTelaInventario();
             } else {
                 mostrarTelaVitoria(); // sem captura, somente a vitória.
+                batalha.getP1().ganharExperiencia(100);
+                imgPikachu.setImage(new Image(getClass().getResource("/imagens/charmeleon.png").toExternalForm()));
             }
-        }}
+        }
+    }
     @FXML private void usarAtaque3() {
         batalha.turnoJogador(2);
         batalha.turnoIA();
@@ -157,12 +186,15 @@ public class TelaBatalhaController {
         atualizarStatus();
 
         if (batalha.getP2().getVidaAtual() <= 0) {
+            mostrarTelaCaptura();
             boolean sucessoCaptura = batalha.tentarCaptura();
             if (sucessoCaptura) {
                 inventario.adicionarPokemon(batalha.getP2());
                 mostrarTelaInventario();
             } else {
                 mostrarTelaVitoria(); // sem captura, somente a vitória.
+                batalha.getP1().ganharExperiencia(100);
+                imgPikachu.setImage(new Image(getClass().getResource("/imagens/charmeleon.png").toExternalForm()));
             }
         }
     }
