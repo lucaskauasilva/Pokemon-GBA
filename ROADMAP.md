@@ -22,7 +22,6 @@ Este roadmap apresenta as etapas planejadas para o desenvolvimento do jogo **Pok
 
 | Etapa | Descrição | Status |
 |-------|-----------|--------|
-
 | 11 | Implementação de Estilização com CSS | 🔄 |
 | 12 | Implementação de outras sugestões do Copilot | 🔄 |
 
